@@ -2,9 +2,9 @@ services:
   lvl:
     build:
       context: ./lvl
-      dockerfile: Dockerfile
+      dockerfile: franken.Dockerfile
     ports:
-      - "8080:8080"
+      - "8000:8000"
     environment:
       DB_CONNECTION: sqlite
       DB_DATABASE: /var/lib/database/database.sqlite
