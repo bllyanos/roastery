@@ -12,7 +12,10 @@
         Quotes
     </h1>
     <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
+        {{ $quote }}
+    </p>
+    <p>
+        {{ $author }}
     </p>
 </body>
 
