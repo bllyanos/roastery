@@ -18,3 +18,15 @@ services:
           cpus: 1
     volumes:
       - ./lvl_data:/var/lib/database
+
+  elx:
+    build:
+      context: ./elx
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    environment:
+      DATABASE_PATH: /var/lib/database/elx.db
+      POOL_SIZE: 1
+    volumes:
+      - ./elx_data:/var/lib/database
