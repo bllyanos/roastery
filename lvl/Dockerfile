@@ -22,6 +22,10 @@ WORKDIR /var/www
 # Copy application code
 COPY . .
 
+# make production build
+RUN sed -i 's/APP_ENV=local/APP_ENV=production/' .env
+RUN sed -i 's/APP_DEBUG=true/APP_DEBUG=false/' .env
+
 # Install PHP dependencies (production mode)
 RUN composer install --no-dev --optimize-autoloader
 

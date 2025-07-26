@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <small>build: {{ $env }}</small>
     <h1>
         Quotes
     </h1>
