@@ -10,14 +10,20 @@ defmodule ElxWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :browser_fast do
+    plug :accepts, ["html"]
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/", ElxWeb do
-    pipe_through :browser
+    pipe_through :browser_fast
 
-    get "/", PageController, :home
+    get "/", PageController, :quotes
+    get "/:id", PageController, :quote
+    get "/say/:message", PageController, :say
   end
 
   # Other scopes may use custom stacks.

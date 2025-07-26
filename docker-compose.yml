@@ -12,10 +12,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 1
-          memory: 1G
+          cpus: 2
+          memory: 2G
         reservations:
-          cpus: 1
+          cpus: 2
     volumes:
       - ./lvl_data:/var/lib/database
 
@@ -28,5 +28,13 @@ services:
     environment:
       DATABASE_PATH: /var/lib/database/elx.db
       POOL_SIZE: 1
+      SECRET_KEY_BASE: "FOnb5ZpPjUIN9O+TIscqzV3e/usCzPLpTz/9b3EIt74mNehW8V6JBlED+lSnbWQ7"
+    deploy:
+      resources:
+        limits:
+          cpus: 2
+          memory: 2G
+        reservations:
+          cpus: 2
     volumes:
       - ./elx_data:/var/lib/database

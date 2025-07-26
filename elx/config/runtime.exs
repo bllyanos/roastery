@@ -30,7 +30,9 @@ if config_env() == :prod do
 
   config :elx, Elx.Repo,
     database: database_path,
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "5")
+    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "5"),
+    queue_target: 500,
+    queue_interval: 4000
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
@@ -57,7 +59,13 @@ if config_env() == :prod do
       # See the documentation on https://hexdocs.pm/bandit/Bandit.html#t:options/0
       # for details about using IPv6 vs IPv4 and loopback vs public addresses.
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
-      port: port
+      port: port,
+      http_1_options: [
+        max_requests: 1000
+      ],
+      http_2_options: [
+        max_requests: 1000
+      ]
     ],
     secret_key_base: secret_key_base
 
