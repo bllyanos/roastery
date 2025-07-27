@@ -35,7 +35,7 @@ module Rls
     config.middleware.delete ActionDispatch::RemoteIp
     config.middleware.delete Rails::Rack::Logger
     config.middleware.delete ActionDispatch::ShowExceptions
-    config.middleware.delete WebConsole::Middleware
+    # config.middleware.delete WebConsole::Middleware
     config.middleware.delete ActionDispatch::DebugExceptions
     config.middleware.delete ActionDispatch::ActionableExceptions
     config.middleware.delete ActionDispatch::Reloader

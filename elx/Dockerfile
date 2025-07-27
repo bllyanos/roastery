@@ -66,6 +66,17 @@ COPY config/runtime.exs config/
 COPY rel rel
 RUN mix release
 
+FROM builder AS migrator
+
+WORKDIR /app
+
+COPY entrypoint.sh entrypoint.sh
+RUN chmod +x entrypoint.sh
+
+
+CMD ["./entrypoint.sh"]
+
+
 # start a new build stage so that the final image will only contain
 # the compiled release and other runtime necessities
 FROM ${RUNNER_IMAGE} AS final
@@ -92,7 +103,6 @@ ENV MIX_ENV="prod"
 # Only copy the final release from the build stage
 COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/elx ./
 
-USER nobody
 
 # If using an environment that doesn't automatically reap zombie processes, it is
 # advised to add an init process such as tini via `apt-get install`

@@ -25,9 +25,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4000:4000"
+    depends_on:
+      - elx_migrator
     environment:
       DATABASE_PATH: /var/lib/database/elx.db
-      POOL_SIZE: 1
       SECRET_KEY_BASE: "FOnb5ZpPjUIN9O+TIscqzV3e/usCzPLpTz/9b3EIt74mNehW8V6JBlED+lSnbWQ7"
     deploy:
       resources:
@@ -38,3 +39,33 @@ services:
           cpus: 2
     volumes:
       - ./elx_data:/var/lib/database
+
+  elx_migrator:
+    build:
+      context: ./elx
+      dockerfile: Dockerfile
+      target: migrator
+    environment:
+      DATABASE_PATH: /var/lib/database/elx.db
+      SECRET_KEY_BASE: "FOnb5ZpPjUIN9O+TIscqzV3e/usCzPLpTz/9b3EIt74mNehW8V6JBlED+lSnbWQ7"
+    volumes:
+      - ./elx_data:/var/lib/database
+
+  rls:
+    build:
+      context: ./rls
+      dockerfile: Dockerfile
+    ports:
+      - "5000:3000"
+    environment:
+      DATABASE_PATH: database/rls.db
+      SECRET_KEY_BASE: "FOnb5ZpPjUIN9O+TIscqzV3e/usCzPLpTz/9b3EIt74mNehW8V6JBlED+lSnbWQ7"
+    deploy:
+      resources:
+        limits:
+          cpus: 2
+          memory: 2G
+        reservations:
+          cpus: 2
+    volumes:
+      - ./rls_data:/rails/database
