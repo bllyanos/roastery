@@ -14,6 +14,11 @@ class PageController < ApplicationController
       @author = quote.author
     end
 
-    render "quote"
+    render "quote", layout: false
+  end
+
+  def say
+    @message = params[:message]
+    render "say", layout: false
   end
 end
