@@ -3,9 +3,8 @@ class PageController < ApplicationController
     id = params[:id]
 
     @quote = "Jadi gini"
-    @author = "Billy Editiano"
+    @author = "Billy Editiano #{id}"
 
     render "quote"
   end
-
 end

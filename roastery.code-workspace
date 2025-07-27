@@ -1,0 +1,31 @@
+{
+  "folders": [
+    {
+      "name": "roastery_project",
+      "path": "."
+    },
+    {
+      "name": "rails",
+      "path": "rls"
+    },
+    {
+      "name": "phoenix",
+      "path": "elx"
+    },
+    {
+      "name": "laravel",
+      "path": "lvl"
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    },
+    "[erb]": {
+      "editor.defaultFormatter": "aliariff.vscode-erb-beautify"
+    }
+  }
+}
