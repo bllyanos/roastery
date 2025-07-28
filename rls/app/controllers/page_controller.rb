@@ -14,7 +14,7 @@ class PageController < ApplicationController
       @author = quote.author
     end
 
-    render "quote", layout: false
+    render "quote"
   end
 
   def say

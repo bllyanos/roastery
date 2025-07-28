@@ -13,9 +13,7 @@ if [ "$DB_CONNECTION" = "sqlite" ]; then
   fi
 
   echo "🔒 Setting permissions for SQLite database and directory"
-  chown www-data:www-data "$DB_DATABASE"
-  chmod 664 "$DB_DATABASE"
-  chown www-data:www-data "$(dirname "$DB_DATABASE")"
+  chmod 666 "$DB_DATABASE"
   chmod 775 "$(dirname "$DB_DATABASE")"
 fi
 
